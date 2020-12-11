@@ -1,0 +1,30 @@
+
+
+Import-Module posh-git
+
+
+// Клонирование репозитория
+git clone <url> <dest>
+git remote set-url origin <url>
+
+Создание репозитория
+// создаем пустой репо
+git init
+
+// пустой коммит
+git commit -m "Initial commit" --allow-empty
+
+// привязка на github.com  (копируем с сайта)
+git remote add origin ...
+git branch -M master
+git push -u origin master
+
+// настройка репо на сайте github
+
+// инициализируем проект, создается package.json
+npm init -y
+
+// add & commit
+git add .
+git commit -m "Init npm project"
+git push --set-upstream origin setup-project
