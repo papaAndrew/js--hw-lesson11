@@ -2,4 +2,14 @@
 
 https://webpack.js.org/guides/getting-started/
 
+1. Ставим webpack
 npm install webpack webpack-cli --save-dev
+
+2. В поиске ищем HtmlWebpackPlugin и устанавливаем. Настраиваем webpack.config.js
+
+3. В поиске ищем Babel и устанавливаем.
+npm install -D babel-loader @babel/core @babel/preset-env webpack
+
+  Настраиваем webpack.config.js
+
+4.
