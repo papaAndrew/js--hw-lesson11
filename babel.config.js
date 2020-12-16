@@ -11,7 +11,8 @@ module.exports = (api) => ({
       "@babel/preset-env",
       {
         useBuiltIns: "entry",
-
+        // 2, 3 or { version: 2 | 3, proposals: boolean }, defaults to 2.
+        corejs: 2,
         // caller.target will be the same as the target option from webpack
         targets: api.caller((caller) => caller && caller.target === "node")
           ? { node: "current" }
