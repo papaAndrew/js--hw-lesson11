@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo .",
+    "test": "jest",
     "lint": "prettier --check . && eslint .",
     "lint:fix": "prettier --write . && eslint . --fix",
     "start": "webpack-dev-server --mode development",
@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "core-js": "^2.6.12",
     "lodash": "^4.17.20"
   }
 }
