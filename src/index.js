@@ -1,12 +1,5 @@
-import _ from "lodash";
+import { getWeatherHere, drawMainFrame } from "./appmain.js";
 
-function component() {
-  const element = document.createElement("div");
+drawMainFrame();
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-
-  return element;
-}
-
-document.body.appendChild(component());
+getWeatherHere();
