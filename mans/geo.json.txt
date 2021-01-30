@@ -1,0 +1,55 @@
+{
+  "organization_name": "LLC Cifrovie Seti Urala",
+  "region": "Sverdlovsk Oblast",
+  "accuracy": 100,
+  "asn": 56947,
+  "organization": "AS56947 LLC Cifrovie Seti Urala",
+  "timezone": "Asia/Yekaterinburg",
+  "longitude": "60.7921",
+  "country_code3": "RUS",
+  "area_code": "0",
+  "ip": "188.68.81.242",
+  "city": "Yekaterinburg",
+  "country": "Russia",
+  "continent_code": "EU",
+  "country_code": "RU",
+  "latitude": "56.9038"
+}
+
+
+coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}:
+{
+  base: "stations",
+  clouds: {all: 0},
+  cod: 200,
+  coord: {lon: 60.8, lat: 56.91},
+  dt: 1608466550,
+  id: 1510203,
+  main: {
+    temp: 259.15,
+    feels_like: 252.09,
+    temp_min: 259.15,
+    temp_max: 259.15,
+    pressure: 1033
+  },
+  name: "Beryozovsky",
+  sys: {
+    type: 1,
+    id: 8985,
+    country: "RU",
+    sunrise: 1608438750,
+    sunset: 1608462986
+  },
+  timezone: 18000,
+  visibility: 10000,
+  weather:
+    [
+      {
+        description: "clear sky",
+        icon: "01n",
+        id: 800,
+        main: "Clear",
+      },
+    ],
+  wind: {speed: 5, deg: 260}
+}

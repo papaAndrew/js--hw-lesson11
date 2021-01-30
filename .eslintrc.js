@@ -10,6 +10,9 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "no-console": "off",
     "import/extensions": "off",
+    "no-restricted-syntax": "off",
+    "no-use-before-define": "off",
   },
 };
