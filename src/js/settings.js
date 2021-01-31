@@ -13,11 +13,7 @@ export const [LBL_GEO, LBL_WEATHER] = ["Здесь", "Сейчас"];
 /**
  * Идентификторы панелей ленты Информация
  */
-export const [ID_PANEL_GEO, ID_PANEL_WEATHER] = [
-  "panel-filters",
-  "panel-geo",
-  "panel-weather",
-];
+export const [ID_PANEL_GEO, ID_PANEL_WEATHER] = ["panel-geo", "panel-weather"];
 
 // ==== Панель Геолокация
 /**
@@ -37,6 +33,7 @@ export const [ID_CITY, ID_LAT, ID_LON, ID_LIST] = [
  * Макс. количество сохраянемых городов
  */
 export const MAX_MEMO_COUNT = 10;
+export const KEY_LOCAL_STORAGE = "memo-weather-citylist";
 
 // ==== Панель Погода
 /**

@@ -19,11 +19,13 @@ function getGeolocation(resolve, reject) {
  * @param {Function} reject
  */
 function getWeatherByCoord(params, resolve, reject) {
-  const { latitude, longitude } = params;
-
-  const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
-
-  getDataByHttpGet(url, resolve, reject);
+  if (params) {
+    if ("latitude" in params && "longitude" in params) {
+      const { latitude, longitude } = params;
+      const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
+      getDataByHttpGet(url, resolve, reject);
+    }
+  }
 }
 
 /**
@@ -33,10 +35,14 @@ function getWeatherByCoord(params, resolve, reject) {
  * @param {Function} reject
  */
 function getWeatherByCity(params, resolve, reject) {
-  const { name } = params;
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${API_KEY}`;
+  if (params) {
+    if ("name" in params) {
+      const { name } = params;
+      const url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${API_KEY}`;
 
-  getDataByHttpGet(url, resolve, reject);
+      getDataByHttpGet(url, resolve, reject);
+    }
+  }
 }
 
 /**
