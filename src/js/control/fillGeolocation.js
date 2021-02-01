@@ -106,16 +106,16 @@ function updateLocalStorage(arrayList) {
  */
 function updateCityList(data, onClick) {
   const cityName = data.name;
-  const promise = readLocalStorage(KEY_LOCAL_STORAGE);
-  promise
-    .then((commaString) => {
+  readLocalStorage(
+    KEY_LOCAL_STORAGE,
+    (commaString) => {
       const arrayList = addCityToList(cityName, commaString);
       fillCityList(arrayList, onClick);
       updateLocalStorage(arrayList);
-    })
-    .catch(console.log);
+    },
+    console.log
+  );
 }
-
 /**
  * Обновляет панель Геолокация данными из объекта Погода
  * @param {object} data объект, полученный от погодного сервиса
