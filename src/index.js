@@ -1,5 +1,5 @@
-import drawMainDiv from "./view/drawMainDiv.js";
-import appRefresh from "./control/app.js";
+import drawMainDiv from "./js/view/drawMainDiv.js";
+import appRefresh from "./js/control/app.js";
 /*
  */
 
