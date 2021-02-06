@@ -1,5 +1,7 @@
 ## Домашнее задание
 
+[![codecov](https://codecov.io/gh/papaAndrew/js--hw-lesson11/branch/master/graph/badge.svg?token=KFsX62dDYL)](https://codecov.io/gh/papaAndrew/js--hw-lesson11)
+
 Приложение "Прогноз погоды"
 Цель: В задании тренируются навыки:
 

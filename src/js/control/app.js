@@ -1,8 +1,8 @@
 import getGeolocation from "../api/getGeolocation.js";
 import getWeatherByCoord from "../api/getWeatherByCoord.js";
 import updateWeather from "./fillWeather.js";
-import updateViews from "./updateViews";
-import updateForCity from "./updateForCity";
+import updateViews from "./updateViews.js";
+import updateForCity from "./updateForCity.js";
 
 /**
  * Updates (fetches data of) all elemets in main div
