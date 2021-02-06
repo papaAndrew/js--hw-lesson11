@@ -1,12 +1,10 @@
-import _ from "lodash";
+import drawMainDiv from "./js/view/drawMainDiv.js";
+import appRefresh from "./js/control/app.js";
+/*
+ */
 
-function component() {
-  const element = document.createElement("div");
+// добавить главный раздел
+document.body.appendChild(drawMainDiv());
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-
-  return element;
-}
-
-document.body.appendChild(component());
+// запуск
+appRefresh();
