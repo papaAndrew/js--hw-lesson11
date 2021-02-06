@@ -32,13 +32,7 @@ function fillGeodata(data) {
     const input = div.querySelector(`#${name}`);
     if (input) {
       if (data) {
-        if (name in data) {
-          setValue(input, data[name]);
-        } else if (name in data.coord) {
-          setValue(input, data.coord[name]);
-        } else {
-          setValue(input);
-        }
+        setValue(input, data[name]);
       } else {
         setValue(input);
       }
@@ -123,8 +117,11 @@ function updateCityList(data, onClick) {
 function updateGeolocation(data, onClick) {
   // обновить данные о местности
   fillGeodata(data);
-  // обновить список городов и хранилище
-  updateCityList(data, onClick);
+
+  if (data) {
+    // обновить список городов и хранилище
+    updateCityList(data, onClick);
+  }
 }
 
 export default updateGeolocation;

@@ -1,116 +1,28 @@
-import {
-  getGeolocation,
-  getWeatherByCoord,
-  getWeatherByCity,
-} from "../js/api/getData";
-import getDataByHttpGet from "../js/api/getDataByHttpGet";
+import { getIcon, getStaticMap } from "../js/api/getData";
 
-const dummy = {
-  latitude: 0,
-  longitude: 0,
-  name: "Some City",
+const dummyWeather = {
+  coord: { lon: 60.8, lat: 56.91 },
+  name: "Beryozovsky",
+  weather: [
+    {
+      description: "clear sky",
+      icon: "01n",
+      id: 800,
+      main: "Clear",
+    },
+  ],
 };
 
-jest.mock("../js/api/getDataByHttpGet");
-
-describe("Testing function getGeolocation calling API", () => {
-  it("have call function getDataByHttpGet", () => {
-    getDataByHttpGet.mockImplementation(() => {});
-
-    getGeolocation();
-
-    expect(getDataByHttpGet).toHaveBeenCalled();
+describe("Testing some functions providing src address to images", () => {
+  it("testing function getIcon", () => {
+    expect(getIcon(dummyWeather)).toMatch(dummyWeather.weather[0].icon);
   });
 
-  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-    getDataByHttpGet.mockImplementation(() => resolve());
+  it("testing function getStaticMap", () => {
+    const regExp = new RegExp(
+      `${dummyWeather.coord.lon}.*${dummyWeather.coord.lat}`
+    );
 
-    const resolve = jest.fn();
-    const reject = jest.fn();
-
-    getGeolocation(resolve, reject);
-
-    expect(resolve).toHaveBeenCalled();
-    expect(reject).not.toHaveBeenCalled();
-  });
-
-  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-    getDataByHttpGet.mockImplementation(() => reject());
-
-    const resolve = jest.fn();
-    const reject = jest.fn();
-
-    getGeolocation(resolve, reject);
-
-    expect(reject).toHaveBeenCalled();
-    expect(resolve).not.toHaveBeenCalled();
-  });
-});
-
-describe("Testing function getWeatherByCoord calling API", () => {
-  it("calls function getDataByHttpGet", () => {
-    getDataByHttpGet.mockImplementation(() => {});
-
-    getWeatherByCoord(dummy);
-
-    expect(getDataByHttpGet).toHaveBeenCalled();
-  });
-
-  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-    getDataByHttpGet.mockImplementation(() => resolve());
-
-    const resolve = jest.fn();
-    const reject = jest.fn();
-
-    getWeatherByCoord(dummy, resolve, reject);
-
-    expect(resolve).toHaveBeenCalled();
-    expect(reject).not.toHaveBeenCalled();
-  });
-
-  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-    getDataByHttpGet.mockImplementation(() => reject());
-
-    const resolve = jest.fn();
-    const reject = jest.fn();
-
-    getWeatherByCoord(dummy, resolve, reject);
-
-    expect(reject).toHaveBeenCalled();
-    expect(resolve).not.toHaveBeenCalled();
-  });
-
-  describe("Testing function getWeatherByCity calling API", () => {
-    it("calls function getDataByHttpGet", () => {
-      getDataByHttpGet.mockImplementation(() => {});
-
-      getWeatherByCity(dummy);
-
-      expect(getDataByHttpGet).toHaveBeenCalled();
-    });
-
-    it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-      getDataByHttpGet.mockImplementation(() => resolve());
-
-      const resolve = jest.fn();
-      const reject = jest.fn();
-
-      getWeatherByCity(dummy, resolve, reject);
-
-      expect(resolve).toHaveBeenCalled();
-      expect(reject).not.toHaveBeenCalled();
-    });
-
-    it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-      getDataByHttpGet.mockImplementation(() => reject());
-
-      const resolve = jest.fn();
-      const reject = jest.fn();
-
-      getWeatherByCity(dummy, resolve, reject);
-
-      expect(reject).toHaveBeenCalled();
-      expect(resolve).not.toHaveBeenCalled();
-    });
+    expect(getStaticMap(dummyWeather)).toMatch(regExp);
   });
 });

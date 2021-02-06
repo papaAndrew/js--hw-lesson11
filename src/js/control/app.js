@@ -1,30 +1,8 @@
-import {
-  getGeolocation,
-  getWeatherByCoord,
-  getWeatherByCity,
-} from "../api/getData.js";
+import getGeolocation from "../api/getGeolocation.js";
+import getWeatherByCoord from "../api/getWeatherByCoord.js";
 import updateWeather from "./fillWeather.js";
-import updateGeolocation from "./fillGeolocation.js";
-import updateMap from "./fillMap.js";
-
-function writeError(data) {
-  // div.querySelector(namesGeo[0]).innerHTML = `Ошибка: ${data.message}`;
-  console.log(`message: ${data.message}`);
-}
-
-/**
- * Обновить данные в панелях
- * @param {object} data данные о погоде
- */
-function updateViews(data) {
-  try {
-    updateGeolocation(data, cityClick);
-    updateWeather(data);
-    updateMap(data);
-  } catch (err) {
-    console.log(err.message);
-  }
-}
+import updateViews from "./updateViews";
+import updateForCity from "./updateForCity";
 
 /**
  * Updates (fetches data of) all elemets in main div
@@ -35,22 +13,14 @@ function appRefresh() {
   // получить геоданные
   getGeolocation(
     // получить погоду и обновить панели
-    (data) => getWeatherByCoord(data, updateViews, writeError),
-    writeError
+    (dataGeo) =>
+      getWeatherByCoord(
+        dataGeo,
+        (dataWeather) => updateViews(dataWeather, cityClick),
+        console.log
+      ),
+    console.log
   );
-}
-
-/**
- * Обновление всего при изменении города тем или иным образом. Если город не указан, обновляем по геолокации, как при старте
- * @param {string} cityName   название города
- */
-function updateForCity(cityName) {
-  if (cityName) {
-    const params = { name: `${cityName}` };
-    getWeatherByCity(params, updateViews, writeError);
-  } else {
-    appRefresh();
-  }
 }
 
 /**
@@ -58,15 +28,15 @@ function updateForCity(cityName) {
  * @param {object} sender предполагается anchor
  */
 function cityClick(event) {
-  updateForCity(event.srcElement.innerText);
+  updateForCity(event.srcElement.innerText, cityClick, appRefresh);
 }
 
 /**
  * Обработчик события Введен город
  */
 function cityChanged(event) {
-  updateForCity(event.srcElement.value);
+  updateForCity(event.srcElement.value, cityClick, appRefresh);
 }
 
 export default appRefresh;
-export { cityChanged };
+export { cityChanged, cityClick, updateViews };

@@ -7,14 +7,12 @@ import { ID_PANEL_MAP, ID_MAP } from "../settings.js";
  */
 function updateMap(data) {
   const div = document.querySelector(`#${ID_PANEL_MAP}`);
+  const img = div.querySelector(`#${ID_MAP}`);
 
-  try {
-    if (data) {
-      const img = div.querySelector(`#${ID_MAP}`);
-      img.src = getStaticMap(data);
-    }
-  } catch (err) {
-    console.log(`resolve error: ${err}`);
+  if (data) {
+    img.src = getStaticMap(data);
+  } else {
+    img.src = "";
   }
 }
 

@@ -10,21 +10,19 @@ const dummyWeather = {
 };
 
 const bodyInnerHTML = `<div id="${ID_PANEL_GEO}">`
-  .concat(`<div id="${ID_CITY}"/>`)
-  .concat("</div>")
-  .concat(
-    `<ul id="${ID_LIST}">`
-      .concat(`<li id="${ID_LIST}0"/>`)
-      .concat(`<li id="${ID_LIST}1"/>`)
-      .concat(`<li id="${ID_LIST}2"/>`)
-      .concat(`<li id="${ID_LIST}3"/>`)
-      .concat(`<li id="${ID_LIST}4"/>`)
-      .concat(`<li id="${ID_LIST}5"/>`)
-      .concat(`<li id="${ID_LIST}6"/>`)
-      .concat(`<li id="${ID_LIST}7"/>`)
-      .concat(`<li id="${ID_LIST}9"/>`)
-      .concat("</ul>")
-  );
+  .concat(`<div id="${ID_CITY}"></div>`)
+  .concat(`<ul id="${ID_LIST}">`)
+  .concat(`<li id="${ID_LIST}0"></li>`)
+  .concat(`<li id="${ID_LIST}1"></li>`)
+  .concat(`<li id="${ID_LIST}2"></li>`)
+  .concat(`<li id="${ID_LIST}3"></li>`)
+  .concat(`<li id="${ID_LIST}4"></li>`)
+  .concat(`<li id="${ID_LIST}5"></li>`)
+  .concat(`<li id="${ID_LIST}6"></li>`)
+  .concat(`<li id="${ID_LIST}7"></li>`)
+  .concat(`<li id="${ID_LIST}9"></li>`)
+  .concat("</ul>")
+  .concat("</div>");
 
 jest.mock("../js/api/readLocalStorage");
 readLocalStorage.mockImplementation((key, resolve) =>
@@ -44,6 +42,11 @@ describe("Testing function fillGeolocation", () => {
     expect(document.querySelector(`#${ID_CITY}`).innerText).toBe(
       dummyWeather.name
     );
+  });
+
+  it("if call fillGeolocation with no params (object Weather undefined) then elements to be clear", () => {
+    fillGeolocation();
+    expect(document.querySelector(`#${ID_CITY}`).innerText).toBe("");
   });
 
   it("claims that city name value got from object Weather was unshifted first into list of cities", () => {
