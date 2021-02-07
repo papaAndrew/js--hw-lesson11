@@ -12,7 +12,7 @@ function getWeatherByCoord(params, resolve, reject) {
   if (params) {
     if ("latitude" in params && "longitude" in params) {
       const { latitude, longitude } = params;
-      const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`;
       getDataByHttpGet(url, resolve, reject);
     }
   }

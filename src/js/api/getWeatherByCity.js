@@ -10,7 +10,7 @@ const API_KEY = "20e3e4bc1a756a121ab11b81e7a51e7b";
  */
 function getWeatherByCity(cityName, resolve, reject) {
   if (cityName) {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
 
     getDataByHttpGet(url, resolve, reject);
   }
