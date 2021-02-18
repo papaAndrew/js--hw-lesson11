@@ -8,14 +8,27 @@ describe("Testing functions readLocalStorage and writeLocalStorage which execute
     localStorage.clear();
   });
 
-  it("claims that writeLocalStorage executes writing to localStorage", () => {
-    writeLocalStorage(KEY, VALUE, () =>
-      expect(localStorage.setItem).toHaveBeenCalledWith(KEY, VALUE)
-    );
+  it("claims that writeLocalStorage executes writing to localStorage", async () => {
+    await writeLocalStorage(KEY, VALUE);
+
+    expect(localStorage.setItem).toHaveBeenCalledWith(KEY, VALUE);
   });
 
-  it(`claims that function writeLocalStorage is thenable and can write Value ${VALUE} with Key ${KEY}`, () =>
-    writeLocalStorage(KEY, VALUE, () =>
-      expect(localStorage.getItem(KEY)).toBe(VALUE)
-    ));
+  it(`claims that function writeLocalStorage is thenable and can write Value ${VALUE} with Key ${KEY}`, async () => {
+    const resolve = jest.fn();
+    const reject = jest.fn();
+
+    await writeLocalStorage(KEY, VALUE, resolve, reject);
+
+    expect(localStorage.getItem(KEY)).toBe(VALUE);
+  });
+
+  it(`claims that function writeLocalStorage calls back handler onResolve`, async () => {
+    const resolve = jest.fn();
+    const reject = jest.fn();
+
+    await writeLocalStorage(KEY, VALUE, resolve, reject);
+
+    expect(resolve).toHaveBeenCalled();
+  });
 });

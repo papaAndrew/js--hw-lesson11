@@ -8,13 +8,20 @@ describe("Testing functions readLocalStorage and writeLocalStorage which execute
     localStorage.clear();
   });
 
-  it("claims that readLocalStorage executes reading from localStorage", () =>
-    readLocalStorage(KEY, () =>
-      expect(localStorage.getItem).toHaveBeenCalledWith(KEY)
-    ));
+  it("claims that readLocalStorage can read from localStorage", async () => {
+    await readLocalStorage(KEY);
 
-  it(`claims that function is thenable and can read Value ${VALUE} by Key ${KEY} stored before`, () => {
+    expect(localStorage.getItem).toHaveBeenCalledWith(KEY);
+  });
+
+  it(`claims that function can read Value ${VALUE} by Key ${KEY} stored before`, async () => {
+    const reject = jest.fn();
+    const resolve = jest.fn();
+
     localStorage.setItem(KEY, VALUE);
-    return readLocalStorage(KEY, (data) => expect(data).toBe(VALUE));
+    await readLocalStorage(KEY, resolve, reject);
+
+    expect(resolve).toHaveBeenCalledWith(VALUE);
+    expect(reject).not.toHaveBeenCalled();
   });
 });

@@ -15,15 +15,11 @@ function getIcon(data) {
  * @returns {string} url для отрисовки карты
  */
 function getStaticMap(params) {
-  /* https://yandex.ru/dev/maps/staticapi/doc/1.x/dg/concepts/input_params.html
-   */
-  // Перечень слоев, определяющих тип карты: map (схема), sat (спутник) и sat,skl (гибрид). Перечень слоев, определяющих тип карты: map (схема), sat (спутник) и sat,skl (гибрид). Подробнее см. Слои и типы карты.
-  const l = "sat,skl";
-  // Уровень масштабирования карты (0-17), см. Уровень масштабирования карты.
-  const z = "13";
-  // Долгота и широта центра карты в градусах, см. Центр карты.
+  const layer = "sat,skl";
+  const zoom = "13";
   const { lon, lat } = params.coord;
-  const url = `https://static-maps.yandex.ru/1.x/?l=${l}&ll=${lon},${lat}&z=${z}`;
+
+  const url = `https://static-maps.yandex.ru/1.x/?l=${layer}&ll=${lon},${lat}&z=${zoom}`;
 
   return url;
 }

@@ -4,35 +4,51 @@ import getDataByHttpGet from "../js/api/getDataByHttpGet";
 jest.mock("../js/api/getDataByHttpGet");
 
 describe("Testing function getGeolocation calling API", () => {
-  it("have to call function getDataByHttpGet", () => {
-    getDataByHttpGet.mockImplementation(() => {});
-
-    getGeolocation();
-
-    expect(getDataByHttpGet).toHaveBeenCalled();
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
-  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-    getDataByHttpGet.mockImplementation(() => resolve());
+  it("have to call function getDataByHttpGet", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
 
     const resolve = jest.fn();
     const reject = jest.fn();
 
-    getGeolocation(resolve, reject);
+    await getGeolocation(resolve, reject);
+
+    expect(getDataByHttpGet).toHaveBeenCalled();
+  });
+
+  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
+
+    const resolve = jest.fn();
+    const reject = jest.fn();
+
+    await getGeolocation(resolve, reject);
 
     expect(resolve).toHaveBeenCalled();
     expect(reject).not.toHaveBeenCalled();
   });
 
-  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-    getDataByHttpGet.mockImplementation(() => reject());
+  it("if getDataByHttpGet was rejected handler onReject has been called back and onResolve has never been called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () =>
+        new Promise(() => {
+          throw new Error("Rejected!");
+        })
+    );
 
-    const resolve = jest.fn();
     const reject = jest.fn();
+    const resolve = jest.fn();
 
-    getGeolocation(resolve, reject);
+    await getGeolocation(resolve, reject);
 
-    expect(reject).toHaveBeenCalled();
     expect(resolve).not.toHaveBeenCalled();
+    expect(reject).toHaveBeenCalled();
   });
 });
