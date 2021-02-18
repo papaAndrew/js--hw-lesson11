@@ -19,7 +19,7 @@ function lsSetItem(key, value) {
  */
 function writeLocalStorage(key, value, resolve, reject) {
   const promise = lsSetItem(key, value);
-  promise.then(resolve).catch(reject);
+  promise.then(resolve, reject);
 }
 
 export default writeLocalStorage;

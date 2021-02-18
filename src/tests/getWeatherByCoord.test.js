@@ -10,33 +10,49 @@ const dummy = {
 jest.mock("../js/api/getDataByHttpGet");
 
 describe("Testing function getWeatherByCoord calling API", () => {
-  it("calls function getDataByHttpGet", () => {
-    getDataByHttpGet.mockImplementation(() => {});
-
-    getWeatherByCoord(dummy);
-
-    expect(getDataByHttpGet).toHaveBeenCalled();
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
-  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-    getDataByHttpGet.mockImplementation(() => resolve());
+  it("calls function getDataByHttpGet", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
 
     const resolve = jest.fn();
     const reject = jest.fn();
 
-    getWeatherByCoord(dummy, resolve, reject);
+    await getWeatherByCoord(dummy, resolve, reject);
+
+    expect(getDataByHttpGet).toHaveBeenCalled();
+  });
+
+  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
+
+    const resolve = jest.fn();
+    const reject = jest.fn();
+
+    await getWeatherByCoord(dummy, resolve, reject);
 
     expect(resolve).toHaveBeenCalled();
     expect(reject).not.toHaveBeenCalled();
   });
 
-  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-    getDataByHttpGet.mockImplementation(() => reject());
+  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () =>
+        new Promise(() => {
+          throw new Error("Rejected!");
+        })
+    );
 
     const resolve = jest.fn();
     const reject = jest.fn();
 
-    getWeatherByCoord(dummy, resolve, reject);
+    await getWeatherByCoord(dummy, resolve, reject);
 
     expect(reject).toHaveBeenCalled();
     expect(resolve).not.toHaveBeenCalled();

@@ -1,40 +1,56 @@
 import getWeatherByCity from "../js/api/getWeatherByCity";
 import getDataByHttpGet from "../js/api/getDataByHttpGet";
 
-const dummy = "Some City";
-
 jest.mock("../js/api/getDataByHttpGet");
 
 describe("Testing function getWeatherByCity calling API", () => {
-  it("calls function getDataByHttpGet", () => {
-    getDataByHttpGet.mockImplementation(() => {});
+  const cityName = "Some City";
 
-    getWeatherByCity(dummy);
-
-    expect(getDataByHttpGet).toHaveBeenCalled();
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
-  it("have call resolve function back if getDataByHttpGet has been resoved. callback function reject never called", () => {
-    getDataByHttpGet.mockImplementation(() => resolve());
+  it("calls function getDataByHttpGet", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
 
     const resolve = jest.fn();
     const reject = jest.fn();
 
-    getWeatherByCity(dummy, resolve, reject);
+    await getWeatherByCity(cityName, resolve, reject);
+
+    expect(getDataByHttpGet).toHaveBeenCalled();
+  });
+
+  it("if getDataByHttpGet was rejected handler onResolve has been called back and onReject has never been called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () => new Promise((resolve) => resolve())
+    );
+
+    const reject = jest.fn();
+    const resolve = jest.fn();
+
+    await getWeatherByCity(cityName, resolve, reject);
 
     expect(resolve).toHaveBeenCalled();
     expect(reject).not.toHaveBeenCalled();
   });
 
-  it("have call reject function back if getDataByHttpGet has been rejected. callback function resolve never called", () => {
-    getDataByHttpGet.mockImplementation(() => reject());
+  it("if getDataByHttpGet was rejected handler onReject has been called back and onResolve has never been called", async () => {
+    getDataByHttpGet.mockImplementation(
+      () =>
+        new Promise(() => {
+          throw new Error("Rejected!");
+        })
+    );
 
-    const resolve = jest.fn();
     const reject = jest.fn();
+    const resolve = jest.fn();
 
-    getWeatherByCity(dummy, resolve, reject);
+    await getWeatherByCity(cityName, resolve, reject);
 
-    expect(reject).toHaveBeenCalled();
     expect(resolve).not.toHaveBeenCalled();
+    expect(reject).toHaveBeenCalled();
   });
 });

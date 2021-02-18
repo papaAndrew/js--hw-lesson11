@@ -17,7 +17,7 @@ function lsGetItem(key) {
  */
 function readLocalStorage(key, resolve, reject) {
   const promise = lsGetItem(key);
-  promise.then(resolve).catch(reject);
+  promise.then(resolve, reject);
 }
 
 export default readLocalStorage;

@@ -1,36 +1,26 @@
+import fetchMock from "jest-fetch-mock";
 import getDataByHttpGet from "../js/api/getDataByHttpGet";
 
-const rsOk = {
-  ok: true,
-  status: 200,
-  statusText: "200 OK",
-};
+fetchMock.enableMocks();
 
 describe("Testing common function getDataByHttpGet", () => {
-  it("calls back function with response containing property response.ok", () => {
-    global.fetch = jest.fn(() => new Promise((resolve) => resolve(rsOk)));
-
-    getDataByHttpGet(0, (response) => {
-      expect("ok" in response).toBe(true);
-    });
+  beforeEach(() => {
+    fetchMock.resetMocks();
   });
 
-  it("if fetch resolved, response.ok is true", () => {
-    global.fetch = jest.fn(() => new Promise((resolve) => resolve(rsOk)));
+  it("returns data if fetch has been resolved. fetch was called once", async () => {
+    const dummy = { ok: true };
+    fetchMock.mockResponseOnce(JSON.stringify(dummy));
 
-    getDataByHttpGet(0, (response) => {
-      expect(response.ok).toBe(true);
-    });
+    await expect(getDataByHttpGet("google")).resolves.toEqual(dummy);
+
+    expect(fetchMock.mock.calls.length).toEqual(1);
+    expect(fetchMock.mock.calls[0][0]).toEqual("google");
   });
 
-  it("if fetch rejected, response.ok is false", () => {
-    // global.fetch = jest.fn(() => new Promise(resolve => reject({"ok": false})));
-    jest
-      .spyOn(global, "fetch")
-      .mockImplementation(() => new Promise((reject) => reject()));
+  it("returns error if fetch has been rejected", async () => {
+    fetchMock.mockRejectOnce(new Error("Rejected!"));
 
-    getDataByHttpGet(0, (response) => {
-      expect(response.ok).toBe(false);
-    });
+    await expect(getDataByHttpGet("google")).rejects.toThrow("Rejected!");
   });
 });
