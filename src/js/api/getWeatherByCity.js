@@ -9,12 +9,14 @@ const API_KEY = "20e3e4bc1a756a121ab11b81e7a51e7b";
  * @param {Function} reject
  */
 async function getWeatherByCity(cityName, resolve, reject) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
+  if (cityName) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
 
-  getDataByHttpGet(url).then(
-    (data) => resolve(data),
-    (error) => reject(error)
-  );
+    getDataByHttpGet(url).then(
+      (data) => resolve(data),
+      (data) => reject(data)
+    );
+  }
 }
 
 export default getWeatherByCity;
