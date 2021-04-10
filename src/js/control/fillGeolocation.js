@@ -100,15 +100,17 @@ function updateLocalStorage(arrayList) {
  */
 function updateCityList(data, onClick) {
   const cityName = data.name;
-  readLocalStorage(
-    KEY_LOCAL_STORAGE,
-    (commaString) => {
-      const arrayList = addCityToList(cityName, commaString);
-      fillCityList(arrayList, onClick);
-      updateLocalStorage(arrayList);
-    },
-    console.log
-  );
+  if (cityName) {
+    readLocalStorage(
+      KEY_LOCAL_STORAGE,
+      (commaString) => {
+        const arrayList = addCityToList(cityName, commaString);
+        fillCityList(arrayList, onClick);
+        updateLocalStorage(arrayList);
+      },
+      console.log
+    );
+  }
 }
 /**
  * Обновляет панель Геолокация данными из объекта Погода

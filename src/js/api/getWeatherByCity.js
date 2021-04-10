@@ -13,7 +13,14 @@ async function getWeatherByCity(cityName, resolve, reject) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`;
 
     getDataByHttpGet(url).then(
-      (data) => resolve(data),
+      (data) => {
+        try {
+          resolve(data);
+        } catch (err) {
+          console.log(err);
+          reject(err);
+        }
+      },
       (data) => reject(data)
     );
   }

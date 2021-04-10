@@ -5,6 +5,7 @@ module.exports = (api) => ({
     "@babel/plugin-proposal-nullish-coalescing-operator",
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-runtime",
   ],
   presets: [
     [
@@ -16,7 +17,7 @@ module.exports = (api) => ({
         // caller.target will be the same as the target option from webpack
         targets: api.caller((caller) => caller && caller.target === "node")
           ? { node: "current" }
-          : { chrome: "58", ie: "11" },
+          : { chrome: "58" },
       },
     ],
   ],
