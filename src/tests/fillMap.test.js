@@ -7,8 +7,6 @@ const dummyWeather = {
   name: "Beryozovsky",
 };
 
-// const imgAddress = getStaticMap(dummyWeather);
-
 const bodyInnerHTML = `<div id="${ID_PANEL_MAP}">`
   .concat(`<img id="${ID_MAP}"></img>`)
   .concat("</div>");

@@ -26,7 +26,6 @@ describe("Testing function updateForCity", () => {
     const cityName = dummyWeather.name;
     updateForCity(cityName, onClick, onRefresh);
 
-    // get data
     expect(getWeatherByCity).toHaveBeenCalled();
     expect(getWeatherByCity.mock.calls[0][0]).toBe(cityName);
 
@@ -43,7 +42,6 @@ describe("Testing function updateForCity", () => {
 
     updateForCity(cityName, onClick, onRefresh);
 
-    // default
     expect(onRefresh).toHaveBeenCalled();
 
     expect(getWeatherByCity).not.toHaveBeenCalled();

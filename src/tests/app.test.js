@@ -30,10 +30,6 @@ const dummyEvent = {
 };
 
 describe("Testing function appRefresh", () => {
-  /*   afterEach(() => {
-    jest.resetAllMocks();
-  });
- */
   it("starts asynchronously the following chain: getGeolocation => getWeatherByCoord => updateViews", () => {
     getGeolocation.mockImplementation((resolve) => resolve(dummyGeo));
     getWeatherByCoord.mockImplementation((data, resolve) =>

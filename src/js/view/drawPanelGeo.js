@@ -40,8 +40,7 @@ function drawMemoList() {
   for (let i = 0; i < 10; i += 1) {
     const li = document.createElement("li");
     li.id = getCityId(i);
-    // !!!
-    //    li.innerHTML = "(пусто)";
+
     ul.appendChild(li);
   }
   div.appendChild(ul);
@@ -54,22 +53,6 @@ function drawMemoList() {
  * @param {string} ident
  * @param {string} label
  *
-function drawSimpleField(ident, label) {
-  const div = document.createElement("div");
-
-  const lbl = document.createElement("span");
-  lbl.classList.add("simple-field");
-  lbl.innerHTML = label;
-  div.appendChild(lbl);
-
-  const ctrl = document.createElement("span");
-  ctrl.id = ident;
-  ctrl.classList.add("simple-field");
-  div.appendChild(ctrl);
-
-  return div;
-}
-*/
 
 /**
  * Создает панель отображения данных геолокации
@@ -84,10 +67,6 @@ function drawPanelGeo() {
   // добавим блок поиска
   span.appendChild(drawSearchBlock());
 
-  // добавим поле Широта
-  // span.appendChild(drawSimpleField(ID_LAT, LBL_LAT));
-  // добавим поле Долгота
-  // span.appendChild(drawSimpleField(ID_LON, LBL_LON));
   // добавим список городов
   span.appendChild(drawMemoList());
 
