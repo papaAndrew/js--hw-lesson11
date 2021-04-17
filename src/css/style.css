@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  color: darkslategrey;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+input {
+  background-color: aliceblue;
+  border-style: none;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+span.panel {
+  width: 42%;
+  margin: 2%;
+  display: inline-block;
+  color: darkslategrey;
+  vertical-align: top;
+  background-color: lightpink;
+  padding: 1%;
+  min-height: 12rem;
+}
+
+span.panel h2 {
+  color: darkslategrey;
+  padding: 1rem;
+  align-self: start;
+}
+
+span.panel p div {
+  display: inline-block;
+  color: darkslategrey;
+  padding: 5px;
+  min-width: 120px;
+}
+
+span.panel p input {
+  display: inline-block;
+  color: darkslateblue;
+  padding: 5px;
+  min-width: 120px;
+  background-color: inherit;
+}
+
+button.apply {
+  width: 35%;
+  min-width: 7rem;
+  display: inline-block;
+  font-size: 18px;
+  padding: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+input.big {
+  font-size: 22px;
+}
+input.get {
+  width: 55%;
+  min-width: 6rem;
+  display: inline-block;
+  font-size: 18px;
+  border-style: solid;
+  border-color: blueviolet;
+  margin: 5px;
+  padding: 5px;
+}
+
+span.panel div {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.simple-field {
+  width: 45%;
+  padding: 5px;
+}
+
+.temp-large {
+  display: inline-block;
+  width: 55%;
+  min-width: 50px;
+  padding: 5px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.icon-weather {
+  display: inline-block;
+  width: 10%;
+  height: 10%;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.city-list {
+  margin: 20px;
+}
+
+.panel-map {
+  margin: 2%;
+  display: inline-block;
+  vertical-align: top;
+}

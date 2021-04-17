@@ -1,0 +1,23 @@
+name: PR Sanity Check
+
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install packages
+        run: |
+          npm install
+      - name: Lint check
+        run: |
+          npm run lint
+      - name: Jest test
+        run: |
+          npm run test
+      - name: Upload to Codecov
+        run: |
+          bash <(curl -s https://codecov.io/bash)

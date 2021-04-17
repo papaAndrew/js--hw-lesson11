@@ -1,0 +1,18 @@
+
+https://jestjs.io/docs/en/getting-started
+
+npm install --save-dev jest
+
+npm install eslint-plugin-jest --save-dev
+
+npm install @types/jest --save-dev
+
+npm install babel-jest @babel/core @babel/preset-env --save-dev
+
+jest --init
+Would you like to use Jest when running "test" script in "package.json"? ... yes
+√ Would you like to use Typescript for the configuration file? ... no
+√ Choose the test environment that will be used for testing » jsdom (browser-like)
+√ Do you want Jest to add coverage reports? ... yes
+√ Which provider should be used to instrument code for coverage? » babel
+√ Automatically clear mock calls and instances between every test? ... yes
