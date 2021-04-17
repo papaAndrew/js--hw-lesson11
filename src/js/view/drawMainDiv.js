@@ -6,8 +6,10 @@ import drawBandMap from "./drawBandMap.js";
  * Рисует главный раздел
  */
 function drawMainDiv() {
-  const div = document.createElement("div");
-  div.id = ID_MAIN_DIV;
+  // const div = document.createElement("div");
+  // div.id = ID_MAIN_DIV;
+
+  const div = document.querySelector(`#${ID_MAIN_DIV}`);
 
   // добавить ленту информации
   div.appendChild(drawBandInfo());

@@ -3,7 +3,7 @@ import readLocalStorage from "../js/api/readLocalStorage";
 describe("Testing functions readLocalStorage and writeLocalStorage which executes io-operations with localStorage", () => {
   const [KEY, VALUE] = ["foo", "bar"];
 
-  beforeEach(() => {
+  afterEach(() => {
     // values stored in tests will also be available in other tests unless you run
     localStorage.clear();
   });

@@ -2,11 +2,7 @@ import {
   ID_PANEL_GEO,
   LBL_GEO,
   LBL_CITY,
-  LBL_LAT,
-  LBL_LON,
   ID_CITY,
-  ID_LAT,
-  ID_LON,
   ID_LIST,
 } from "../settings.js";
 import { getCityId } from "../control/fillGeolocation.js";
@@ -57,7 +53,7 @@ function drawMemoList() {
  * Рисует типовое поле для ввода знаечния с подписью (label)
  * @param {string} ident
  * @param {string} label
- */
+ *
 function drawSimpleField(ident, label) {
   const div = document.createElement("div");
 
@@ -73,6 +69,7 @@ function drawSimpleField(ident, label) {
 
   return div;
 }
+*/
 
 /**
  * Создает панель отображения данных геолокации
@@ -88,9 +85,9 @@ function drawPanelGeo() {
   span.appendChild(drawSearchBlock());
 
   // добавим поле Широта
-  span.appendChild(drawSimpleField(ID_LAT, LBL_LAT));
+  // span.appendChild(drawSimpleField(ID_LAT, LBL_LAT));
   // добавим поле Долгота
-  span.appendChild(drawSimpleField(ID_LON, LBL_LON));
+  // span.appendChild(drawSimpleField(ID_LON, LBL_LON));
   // добавим список городов
   span.appendChild(drawMemoList());
 

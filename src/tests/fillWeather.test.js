@@ -37,8 +37,6 @@ const bodyInnerHTML = `<div id="${ID_PANEL_WEATHER}">`
 describe("Testing function fillWeather", () => {
   beforeEach(() => {
     document.body.innerHTML = bodyInnerHTML;
-    // console.log(bodyInnerHTML);
-    // console.log(document.body.innerHTML);
   });
 
   it("claims that temperature value got from object Weather put to element with specified id. measure name can be concatenated with.", () => {
